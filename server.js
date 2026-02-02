@@ -4,10 +4,11 @@ const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+app.use(express.json());
 
-app.get("/api/signals/latest", (req, res) => {
-  res.json({
+app.get("/api/signals", (req, res) => {
+  console.log("Signal empfangen:", req.body);
+  res.json({ ok: true });
     symbol: "EURUSD",
     action: "BUY",
     lot: 0.10,
@@ -18,4 +19,5 @@ app.get("/api/signals/latest", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Signal API läuft auf http://localhost:${PORT}/api/signals/latest`);
+
 });
